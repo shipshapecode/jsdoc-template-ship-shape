@@ -473,9 +473,10 @@ exports.publish = function (taffyData, opts, tutorials) {
   // update outdir if necessary, then create outdir
   var packageInfo = (find({kind: 'package'}) || [])[0];
 
-  if (packageInfo && packageInfo.name) {
-    outdir = path.join(outdir, packageInfo.name, packageInfo.version || '');
-  }
+  //TODO make this configurable, rather than not nesting under the name and version
+  // if (packageInfo && packageInfo.name) {
+  //   outdir = path.join(outdir, packageInfo.name, packageInfo.version || '');
+  // }
   fs.mkPath(outdir);
 
   // copy the template's static files to outdir
