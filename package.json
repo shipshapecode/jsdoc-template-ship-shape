@@ -4,5 +4,8 @@
   "description": "A JSDoc Template for Pretty Docs",
   "repository": "https://github.com/shipshapecode/jsdoc-template-ship-shape.git",
   "author": "Robert Wagner <rwwagner90@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "taffydb": "^2.7.3"
+  }
 }

@@ -25,7 +25,11 @@ function find(spec) {
 }
 
 function tutoriallink(tutorial) {
-  return helper.toTutorial(tutorial, null, {tag: 'em', classname: 'disabled', prefix: 'Tutorial: '});
+  return helper.toTutorial(tutorial, null, {
+    tag: 'em',
+    classname: 'disabled',
+    prefix: 'Tutorial: '
+  });
 }
 
 function getAncestorLinks(doclet) {
@@ -326,14 +330,13 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
   return nav;
 }
 
-// TODO: as needed, comment back in later
-// function linktoTutorial(longName, name) {
-//   return tutoriallink(name);
-// }
+function linktoTutorial(longName, name) {
+  return tutoriallink(name);
+}
 
-// function linktoExternal(longName, name) {
-//   return linkto(longName, name.replace(/(^"|"$)/g, ''));
-// }
+function linktoExternal(longName, name) {
+  return linkto(longName, name.replace(/(^"|"$)/g, ''));
+}
 
 /**
  * Create the navigation sidebar.
@@ -353,16 +356,16 @@ function buildNav(members) {
   var nav = '';
   var globalNav = '';
   var seen = {};
-  // var seenTutorials = {};
+  var seenTutorials = {};
 
+  nav += buildMemberNav(members.tutorials || [], 'Tutorials', seenTutorials, linktoTutorial);
   nav += buildMemberNav(members.classes, 'Classes', seen, linkto);
-  nav += buildMemberNav(members.modules, 'Modules', {}, linkto);
+  nav += buildMemberNav(members.modules || [], 'Modules', {}, linkto);
   // TODO: as needed, comment back in later
   // nav += buildMemberNav(members.externals, 'Externals', seen, linktoExternal);
   // nav += buildMemberNav(members.events, 'Events', seen, linkto);
   // nav += buildMemberNav(members.namespaces, 'Namespaces', seen, linkto);
   // nav += buildMemberNav(members.mixins, 'Mixins', seen, linkto);
-  // nav += buildMemberNav(members.tutorials, 'Tutorials', seenTutorials, linktoTutorial);
   // nav += buildMemberNav(members.interfaces, 'Interfaces', seen, linkto);
 
   if (members.globals.length) {
@@ -646,7 +649,10 @@ exports.publish = function (taffyData, opts, tutorials) {
 
   // TODO: move the tutorial functions to templateHelper.js
   function generateTutorial(title, tutorial, filename) {
+    var packageInfo = (find({kind: 'package'}) || [])[0];
+
     var tutorialData = {
+      package: packageInfo,
       title: title,
       header: tutorial.title,
       content: tutorial.parse(),
