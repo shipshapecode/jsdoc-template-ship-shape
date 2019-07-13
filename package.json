@@ -1,6 +1,6 @@
 {
   "name": "jsdoc-template-ship-shape",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A JSDoc Template for Pretty Docs",
   "repository": "https://github.com/shipshapecode/jsdoc-template-ship-shape.git",
   "author": "Robert Wagner <rwwagner90@gmail.com>",
