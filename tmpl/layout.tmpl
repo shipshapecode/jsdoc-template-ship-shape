@@ -4,6 +4,7 @@ var templates = env.conf.templates;
 var usesSearch = Boolean(templates.search);
 var collapseMenu = templates.collapse;
 var githubLink = templates.githubLink;
+var favicon = templates.favicon;
 var resources = templates.resources;
 ?>
 
@@ -20,7 +21,7 @@ var resources = templates.resources;
 
   <?js if (favicon) { ?>
     <link href="<?js= favicon ?>" rel="icon" type="image/png">
-  <?js } ?>  
+  <?js } ?>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
